@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Configuración técnica de codificación y responsive design -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DonaFácil - Componente Front-End</title>
+
+    <!-- Integración del Framework Tailwind CSS vía CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Estilos personalizados para reglas de negocio específicas -->
+    <link rel="stylesheet" href="estilos.css">
+    <!-- Librería para renderizado de iconografía SVG -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="min-h-screen flex flex-col justify-between bg-brand-light">
+
+    <!-- CABECERA: Navegación principal del sistema (Single Page Application) -->
+    <header class="bg-white border-b border-brand-accent sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
+            <!-- Branding / Logo corporativo -->
+            <div class="flex items-center space-x-2 cursor-pointer" onclick="switchTab('inicio')">
+                <div class="text-brand-primary"><i data-lucide="heart" class="w-8 h-8 fill-current"></i></div>
+                <div>
+                    <span class="text-2xl font-bold text-gray-800 tracking-tight">Dona<span class="text-brand-primary">Fácil</span></span>
+                    <p class="text-xs text-gray-400 -mt-1 font-medium">Dona hoy, cambia vidas</p>
+                </div>
+            </div>
+
+            <!-- Menú de conmutación de módulos requeridos -->
+            <nav class="hidden md:flex bg-gray-50 p-1 rounded-full border border-gray-200 space-x-1">
+                <button onclick="switchTab('inicio')" id="btn-inicio" class="tab-btn px-4 py-2 rounded-full text-sm font-semibold transition bg-brand-primary text-white shadow-sm">1. Inicio / Catálogo</button>
+                <button onclick="switchTab('login')" id="btn-login" class="tab-btn px-4 py-2 rounded-full text-sm font-semibold text-gray-600 hover:text-brand-primary transition">2. Login Seguro</button>
+                <button onclick="switchTab('dashboard')" id="btn-dashboard" class="tab-btn px-4 py-2 rounded-full text-sm font-semibold text-gray-600 hover:text-brand-primary transition">3. Dashboard Org</button>
+                <button onclick="switchTab('crear')" id="btn-crear" class="tab-btn px-4 py-2 rounded-full text-sm font-semibold text-gray-600 hover:text-brand-primary transition">4. Crear Campaña</button>
+            </nav>
+
+            <div class="flex items-center space-x-3">
+                <button onclick="switchTab('login')" class="text-sm font-medium text-brand-primary border border-brand-primary px-4 py-2 rounded-full hover:bg-brand-light transition">Ingresar</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTENEDOR DE VISTAS DINÁMICAS -->
+    <main class="max-w-7xl mx-auto px-4 py-8 flex-grow w-full">
+
+        <!-- MÓDULO 1: CATÁLOGO DE CAUSAS -->
+        <section id="view-inicio" class="tab-view space-y-12">
+            <div class="bg-gradient-to-r from-[#FFF0F2] to-[#FFE4E8] rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between border border-brand-accent shadow-sm">
+                <div class="space-y-6 max-w-xl">
+                    <h1 class="text-4xl md:text-5xl font-extrabold text-gray-800 leading-tight">Pequeñas donaciones,<br><span class="text-brand-primary">grandes cambios</span></h1>
+                    <p class="text-gray-600 text-lg">Comparte lo que ya no usas y ayuda a quien más lo necesita.</p>
+                </div>
+                
+                <!-- Lista instructiva del proceso -->
+                <div class="mt-8 md:mt-0 bg-white p-6 rounded-2xl shadow-sm border border-brand-accent max-w-sm">
+                    <h3 class="font-bold text-gray-800 mb-3 flex items-center space-x-2">
+                        <i data-lucide="help-circle" class="text-brand-primary w-5 h-5"></i>
+                        <span>¿Cómo funciona el proceso?</span>
+                    </h3>
+                    <ol class="lista-proceso text-xs text-gray-600 space-y-2">
+                        <li>Selecciona una de las causas activas del catálogo.</li>
+                        <li>Revisa los requerimientos específicos de la fundación.</li>
+                        <li>Agenda la entrega logística directa por la plataforma.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Grilla interactiva de causas registradas -->
+            <div class="space-y-6">
+                <h2 class="text-2xl font-bold text-gray-800 flex items-center space-x-2"><i data-lucide="star" class="w-6 h-6 text-brand-primary fill-current"></i><span>Causas Destacadas</span></h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <article class="bg-white rounded-2xl overflow-hidden border border-brand-accent shadow-sm flex flex-col justify-between">
+                        <div class="p-5 space-y-4">
+                            <div class="w-full h-40 bg-gray-100 rounded-xl flex items-center justify-center text-gray-400">
+                                <i data-lucide="shirt" class="w-12 h-12 text-brand-primary"></i>
+                            </div>
+                            <h3 class="font-bold text-lg text-gray-800">Ropa de invierno y abrigos</h3>
+                            <p class="text-sm text-gray-500">Lote de chaquetas y cobijas en perfecto estado.</p>
+                        </div>
+                        <div class="p-5 border-t border-brand-light bg-brand-light/20">
+                            <a href="#" class="block text-center bg-white border border-brand-primary text-brand-primary font-semibold py-2 rounded-xl text-sm hover:bg-brand-primary hover:text-white transition">Ver detalles completos</a>
+                        </div>
+                    </article>
+                    <article class="bg-white rounded-2xl overflow-hidden border border-brand-accent shadow-sm flex flex-col justify-between">
+                        <div class="p-5 space-y-4">
+                            <div class="w-full h-40 bg-gray-100 rounded-xl flex items-center justify-center text-gray-400">
+                                <i data-lucide="apple" class="w-12 h-12 text-brand-primary"></i>
+                            </div>
+                            <h3 class="font-bold text-lg text-gray-800">Mercados no perecederos</h3>
+                            <p class="text-sm text-gray-500">Granos y alimentos enlatados para comedores.</p>
+                        </div>
+                        <div class="p-5 border-t border-brand-light bg-brand-light/20">
+                            <a href="#" class="block text-center bg-white border border-brand-primary text-brand-primary font-semibold py-2 rounded-xl text-sm hover:bg-brand-primary hover:text-white transition">Ver detalles completos</a>
+                        </div>
+                    </article>
+                    <article class="bg-white rounded-2xl overflow-hidden border border-brand-accent shadow-sm flex flex-col justify-between">
+                        <div class="p-5 space-y-4">
+                            <div class="w-full h-40 bg-gray-100 rounded-xl flex items-center justify-center text-gray-400">
+                                <i data-lucide="smile" class="w-12 h-12 text-brand-primary"></i>
+                            </div>
+                            <h3 class="font-bold text-lg text-gray-800">Juguetes didácticos</h3>
+                            <p class="text-sm text-gray-500">Juguetes higienizados para desarrollo infantil.</p>
+                        </div>
+                        <div class="p-5 border-t border-brand-light bg-brand-light/20">
+                            <a href="#" class="block text-center bg-white border border-brand-primary text-brand-primary font-semibold py-2 rounded-xl text-sm hover:bg-brand-primary hover:text-white transition">Ver detalles completos</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- MÓDULO 2: AUTENTICACIÓN -->
+        <section id="view-login" class="tab-view hidden max-w-md mx-auto bg-white rounded-3xl shadow-lg border border-brand-accent overflow-hidden">
+            <div class="bg-brand-primary p-6 text-white text-center">
+                <i data-lucide="lock" class="w-10 h-10 mx-auto mb-2"></i>
+                <h2 class="text-2xl font-bold">Ingreso Seguro</h2>
+            </div>
+            <!-- Formulario con validaciones nativas HTML5 -->
+            <form class="p-8 space-y-5" onsubmit="event.preventDefault(); switchTab('dashboard');">
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Correo institucional</label>
+                    <input type="email" required placeholder="ejemplo@donafacil.org" class="w-full px-4 py-3 rounded-xl border border-gray-200 outline-none focus:border-brand-primary text-sm bg-gray-50">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Contraseña</label>
+                    <input type="password" required placeholder="••••••••" class="w-full px-4 py-3 rounded-xl border border-gray-200 outline-none focus:border-brand-primary text-sm bg-gray-50">
+                </div>
+                <button type="submit" class="w-full bg-brand-primary text-white font-bold py-3 rounded-xl hover:bg-brand-dark transition shadow-sm">Autenticar Entrada</button>
+            </form>
+        </section>
+
+        <!-- MÓDULO 3: PANEL ADMINISTRATIVO -->
+        <section id="view-dashboard" class="tab-view hidden space-y-8">
+            <h2 class="text-3xl font-extrabold text-gray-800">Monitoreo del Impacto Social</h2>
+            <div class="bg-white rounded-2xl border border-brand-accent shadow-sm overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse text-sm">
+                        <thead>
+                            <tr class="bg-gray-50 border-b border-gray-100 text-gray-400 font-semibold">
+                                <th class="p-4">Donante</th>
+                                <th class="p-4">Campaña Destino</th>
+                                <th class="p-4">Fecha Aporte</th>
+                                <th class="p-4 text-center">Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100 text-gray-600">
+                            <tr>
+                                <td class="p-4 font-medium text-gray-800">Carlos Mario Restrepo</td>
+                                <td class="p-4">Kits escolares Comuna 13</td>
+                                <td class="p-4">Hoy, 08:34 AM</td>
+                                <td class="p-4 text-center"><span class="bg-amber-100 text-amber-700 px-2 py-1 rounded-lg text-xs font-medium">En proceso</span></td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-medium text-gray-800">Mariana Vélez Correa</td>
+                                <td class="p-4">Alimento Canino Albergue</td>
+                                <td class="p-4">Ayer, 04:12 PM</td>
+                                <td class="p-4 text-center"><span class="bg-green-100 text-green-700 px-2 py-1 rounded-lg text-xs font-medium">Recibido</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- MÓDULO 4: FORMULARIO DE REGISTRO -->
+        <section id="view-crear" class="tab-view hidden max-w-2xl mx-auto bg-white rounded-3xl shadow-lg border border-brand-accent overflow-hidden">
+            <div class="bg-brand-primary p-6 text-white"><h2 class="text-xl font-bold">Publicar Nueva Causa</h2></div>
+            <form class="p-8 space-y-6" onsubmit="event.preventDefault(); alert('Campaña creada de manera exitosa.'); switchTab('inicio');">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Título de la Campaña</label>
+                        <input type="text" required maxlength="100" placeholder="Ej: Frazadas para el frío" class="w-full px-4 py-3 rounded-xl border border-gray-200 outline-none focus:border-brand-primary text-sm bg-gray-50">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Cantidad Objetivo</label>
+                        <input type="number" required min="1" placeholder="500" class="w-full px-4 py-3 rounded-xl border border-gray-200 outline-none focus:border-brand-primary text-sm bg-gray-50">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Categoría</label>
+                        <select class="w-full px-4 py-3 rounded-xl border border-gray-200 outline-none focus:border-brand-primary text-sm bg-gray-50 text-gray-600">
+                            <option>Ropa y Abrigo</option>
+                            <option>Alimentos</option>
+                            <option>Juguetes</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="flex justify-end space-x-3 pt-4 border-t">
+                    <button type="submit" class="px-6 py-2.5 bg-brand-primary text-white font-bold rounded-xl hover:bg-brand-dark transition text-sm">Guardar Causa</button>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- PIE DE PÁGINA INSTITUCIONAL -->
+    <footer class="bg-white border-t border-brand-accent py-4">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs text-gray-400 font-medium">
+            DonaFácil © 2026. Evidencia Front-End ADSO GA7-220501096-AA4-EV03.
+        </div>
+    </footer>
+
+    <!-- Lógica de control JavaScript -->
+    <script src="funciones.js"></script>
+</body>
+</html>
